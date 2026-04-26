@@ -1,0 +1,31 @@
+# APC 模块配置文件
+# 修改阈值无需改代码，重启即生效
+
+# 参与度决策阈值
+participation:
+  min_trust_score: 0.3        # 信任分低于此值则不参与
+  min_resource: 0.2           # 资源低于此值则不参与
+
+# 更新频率决策阈值
+frequency:
+  low_resource_threshold: 0.3    # 资源低于此值 → 低频
+  high_threat_threshold: 0.7     # 威胁高于此值 → 中频
+  high_criticality_threshold: 0.8 # 任务关键性高于此值 → 高频
+  
+  # 频率映射
+  high_frequency: 1    # 每轮参与
+  medium_frequency: 3  # 每3轮参与
+  low_frequency: 4     # 每4轮参与
+  default_frequency: 2 # 默认频率
+
+# 噪声尺度决策（基于 epsilon 计算）
+noise:
+  base_epsilon: 1.0           # 基础隐私预算
+  min_epsilon: 0.2            # 最小 epsilon（最大噪声）
+  max_epsilon: 1.5            # 最大 epsilon（最小噪声）
+  
+  # 权重系数（影响因子）
+  weight_threat: 0.3          # 威胁对 epsilon 的降低权重
+  weight_trust: 0.2           # 信任对 epsilon 的降低权重
+  weight_criticality: 0.2     # 关键性对 epsilon 的提高权重
+  weight_resource: 0.1        # 资源对 epsilon 的降低权重
